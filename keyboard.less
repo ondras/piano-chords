@@ -1,0 +1,48 @@
+.keyboard {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  height: 150px;
+
+  .key {
+    border: 1px solid black;
+    --width: 32px;
+    width: var(--width);
+    border-radius: 0 0 3px 3px;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 4px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &.white {
+      box-shadow: 0 3px 2px -2px rgba(0,0,0,0.4);
+      color: #000;
+      background-color: #fff;
+    }
+
+    &.black {
+      --width: 24px;
+      background-color: #000;
+      color: #fff;
+      margin-left: calc(-1 * var(--width));
+      height: 70%;
+      position: relative;
+      left: calc(var(--width) / 2);
+
+      box-shadow: 0 3px 2px -2px rgba(0,0,0,0.4);
+    }
+
+    &.active {
+      background-color: #888;
+      &.white {}
+
+      &.black {
+        border: 2px solid black;
+      }
+    }
+  }
+}
