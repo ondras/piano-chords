@@ -1,6 +1,15 @@
 {
-  "name": "typescript",
+  "name": "piano-chords",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "ts": "tsc",
+    "less": "lessc less/keyboard.less > css/keyboard.css"
+  },
+  "devDependencies": {
+    "@types/webmidi": "^2.0.4",
+    "less": "^4.0.0",
+    "typescript": "^4.1.3"
+  }
 }

@@ -1,13 +1,14 @@
-import { Tone, clamp } from "./tones";
-import { types as chordTypes, create as createChord, Chord } from "./chords";
+import { Tone, clamp } from "./tones.js";
+import { types as chordTypes, create as createChord, Chord } from "./chords.js";
 
-interface chordAndMatch {
+
+interface ChordAndMatch {
   chord: Chord;
   match: number; // 0 = none, 1 = partial, 2 = exact
 }
 
-function unwrap(cam: chordAndMatch) { return cam.chord; }
-function CMP(a: chordAndMatch, b: chordAndMatch) { return b.match - a.match; }
+function unwrap(cam: ChordAndMatch) { return cam.chord; }
+function CMP(a: ChordAndMatch, b: ChordAndMatch) { return b.match - a.match; }
 
 export function find(tones: Tone[]) {
   tones = Array.from(new Set(tones.map(clamp)));

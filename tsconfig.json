@@ -1,5 +1,9 @@
 {
+	"include": ["ts"],
   "compilerOptions": {
-    "target": "esnext"
+    "target": "esnext",
+		"outDir": "js",
+		"noEmitOnError": true,
+    "incremental": true
   }
 }

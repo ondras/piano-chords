@@ -1,5 +1,5 @@
-import * as midi from "./midi";
-import { Tone, clamp, toString } from "./tones";
+import * as midi from "./midi.js";
+import { Tone, clamp, toString } from "./tones.js";
 
 
 const NATURAL = new Set<Tone>([0, 2, 4, 5, 7, 9, 11]);
@@ -90,7 +90,7 @@ export default class Keyboard {
         midiTone && this.up(midiTone);
       } break;
 
-      case "midimessage": this.onMidiMessage(e as MIDIMessageEvent); break;
+      case "midimessage": this.onMidiMessage(e as WebMidi.MIDIMessageEvent); break;
     }
 
     this.onChange();
@@ -101,13 +101,13 @@ export default class Keyboard {
   }
 
   private up(midi: number) {
-    (this.keys.get(midi) as HTMLElement).classList.remove("active");    
+    (this.keys.get(midi) as HTMLElement).classList.remove("active");
   }
 
-  private onMidiMessage(e: MIDIMessageEvent) {
+  private onMidiMessage(e: WebMidi.MIDIMessageEvent) {
     let [cmd, pitch, velocity] = e.data;
     let tone = midi.midiToTone(pitch) + MIN;
-    
+
     switch (cmd >> 4) {
       case 9: // note on
         (velocity > 0 ? this.down(tone) : this.up(tone));

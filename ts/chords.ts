@@ -1,4 +1,4 @@
-import * as tones from "./tones";
+import * as tones from "./tones.js";
 
 export interface Chord {
   type: string;

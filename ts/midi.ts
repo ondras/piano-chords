@@ -1,4 +1,4 @@
-import { clamp } from "./tones";
+import { clamp } from "./tones.js";
 
 
 let listeners = [];
@@ -25,7 +25,7 @@ export function midiToTone(midi: number) {
   return clamp(midi - 36); // 36 = C
 }
 
-export function addEventListener(listener: EventListener) {
+export function addEventListener(listener: EventListener | EventListenerObject) {
   listeners.push(listener);
 }
 

@@ -1,10 +1,7 @@
-import "./style.css";
-import "./keyboard.less";
-
-import { Chord, toString } from "./chords";
-import { find } from "./finder";
-import { midiToTone } from "./midi";
-import Keyboard from "./keyboard";
+import { Chord, toString } from "./chords.js";
+import { find } from "./finder.js";
+import { midiToTone } from "./midi.js";
+import Keyboard from "./keyboard.js";
 
 
 function str(chord: Chord) { return toString(chord); }
@@ -15,7 +12,7 @@ document.body.appendChild(k.node);
 function update() {
   let node = document.querySelector("#chords");
   let tones = k.tones.map(midiToTone);
-  
+
   if (tones.length < 3) {
     node.textContent = "Press more keys";
     return;
