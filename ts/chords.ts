@@ -21,7 +21,8 @@ const CHORDS: Record<string, tones.Tone[]> = {
   "min/maj7": [0, 3, 7, 11],
   dim: [0, 3, 6],
   dim7: [0, 3, 6, 9],
-  m7b5: [0, 3, 6, 10]
+  m7b5: [0, 3, 6, 10],
+  "dim/maj7": [0, 3, 6, 11]
 };
 
 const SUFFIXES: Record<string, string> = {
@@ -39,7 +40,8 @@ const SUFFIXES: Record<string, string> = {
   "min/maj7": "mi/maj<sup>7</sup>",
   dim: "dim",
   dim7: "dim<sup>7</sup>",
-  m7b5: "mi<sup>7/5-</sup>"
+  m7b5: "mi<sup>7/5-</sup>",
+  "dim/maj7": "dim/maj<sup>7</sup>"
 };
 
 export const types = Object.keys(CHORDS);
