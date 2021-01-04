@@ -2,8 +2,9 @@ import { toString } from "./chords.js";
 import { find } from "./finder.js";
 import { midiToTone } from "./midi.js";
 import Keyboard from "./keyboard.js";
-function str(chord) { return toString(chord); }
-let k = new Keyboard();
+const naming = document.querySelector("#naming");
+function str(chord) { return toString(chord, naming.value); }
+let k = new Keyboard(naming.value);
 document.body.appendChild(k.node);
 function update() {
     let node = document.querySelector("#chords");
@@ -22,4 +23,8 @@ function update() {
 }
 document.querySelector("#piano").appendChild(k.node);
 k.onChange = update;
+naming.addEventListener("change", _ => {
+    k.naming = naming.value;
+    update();
+});
 update();

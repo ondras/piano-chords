@@ -35,7 +35,6 @@ function createKey(midiTone) {
     let tone = midi.midiToTone(midiTone);
     let node = document.createElement("li");
     node.classList.add("key");
-    node.textContent = toString(tone);
     if (isNatural(tone)) {
         node.classList.add("white");
     }
@@ -47,7 +46,7 @@ function createKey(midiTone) {
 const MIN = 48;
 const MAX = 72;
 export default class Keyboard {
-    constructor() {
+    constructor(naming) {
         this.keys = new Map();
         this.node = document.createElement("ol");
         this.node.classList.add("keyboard");
@@ -60,6 +59,7 @@ export default class Keyboard {
         window.addEventListener("keydown", this);
         window.addEventListener("keyup", this);
         midi.addEventListener(this);
+        this.naming = naming;
     }
     handleEvent(e) {
         switch (e.type) {
@@ -108,6 +108,12 @@ export default class Keyboard {
             node.classList.contains("active") && tones.push(tone);
         });
         return tones;
+    }
+    set naming(naming) {
+        this.keys.forEach((node, midiTone) => {
+            let tone = midi.midiToTone(midiTone);
+            node.textContent = toString(tone, naming);
+        });
     }
     onChange() { }
 }

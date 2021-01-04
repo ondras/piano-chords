@@ -4,38 +4,38 @@ import { clamp } from "./tones.js";
 let listeners = [];
 
 function onStateChange(e) {
-  listenToInputs(e.target);
+	listenToInputs(e.target);
 }
 
 function onMidiMessage(e) {
-  listeners.forEach(listener => {
-    if (typeof(listener) == "function") {
-      listener(e);
-    } else {
-      listener.handleEvent(e);
-    }
-  });
+	listeners.forEach(listener => {
+		if (typeof(listener) == "function") {
+			listener(e);
+		} else {
+			listener.handleEvent(e);
+		}
+	});
 }
 
 function listenToInputs(access) {
-  access.inputs.forEach(input => input.addEventListener("midimessage", onMidiMessage));
+	access.inputs.forEach(input => input.addEventListener("midimessage", onMidiMessage));
 }
 
 export function midiToTone(midi: number) {
-  return clamp(midi - 36); // 36 = C
+	return clamp(midi - 36); // 36 = C
 }
 
 export function addEventListener(listener: EventListener | EventListenerObject) {
-  listeners.push(listener);
+	listeners.push(listener);
 }
 
 async function init() {
-  if (!navigator.requestMIDIAccess) { return null; }
+	if (!navigator.requestMIDIAccess) { return null; }
 
-  let access = await navigator.requestMIDIAccess();
-  access.addEventListener("statechange", onStateChange);
+	let access = await navigator.requestMIDIAccess();
+	access.addEventListener("statechange", onStateChange);
 
-  listenToInputs(access);
+	listenToInputs(access);
 }
 
 init();

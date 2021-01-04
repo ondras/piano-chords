@@ -3,30 +3,36 @@ import { find } from "./finder.js";
 import { midiToTone } from "./midi.js";
 import Keyboard from "./keyboard.js";
 
+const naming = document.querySelector("#naming") as HTMLSelectElement;
+function str(chord: Chord) { return toString(chord, naming.value); }
 
-function str(chord: Chord) { return toString(chord); }
-
-let k = new Keyboard();
+let k = new Keyboard(naming.value);
 document.body.appendChild(k.node);
 
+
 function update() {
-  let node = document.querySelector("#chords");
-  let tones = k.tones.map(midiToTone);
+	let node = document.querySelector("#chords");
+	let tones = k.tones.map(midiToTone);
 
-  if (tones.length < 3) {
-    node.textContent = "Press more keys";
-    return;
-  }
+	if (tones.length < 3) {
+		node.textContent = "Press more keys";
+		return;
+	}
 
-  let chords = find(tones);
-  if (chords.length == 0) {
-    node.textContent = "No chords detected :-(";
-  } else {
-    node.innerHTML = `Playing ${chords.map(str).join(" / ")}`;
-  }
+	let chords = find(tones);
+	if (chords.length == 0) {
+		node.textContent = "No chords detected :-(";
+	} else {
+		node.innerHTML = `Playing ${chords.map(str).join(" / ")}`;
+	}
 }
 
 document.querySelector("#piano").appendChild(k.node);
 k.onChange = update;
+
+naming.addEventListener("change", _ => {
+	k.naming = naming.value;
+	update();
+})
 
 update();
