@@ -13,6 +13,7 @@ const CHORDS: Record<string, tones.Tone[]> = {
 	maj7: [0, 4, 7, 11],
 	aug: [0, 4, 8],
 	aug7: [0, 4, 8, 10],
+	"maj7+": [0, 4, 8, 11],
 	dom9: [0, 4, /*8,*/ 10, 2],
 
 	minor: [0, 3, 7],
@@ -32,6 +33,7 @@ const SUFFIXES: Record<string, string> = {
 	maj7: "maj<sup>7</sup>",
 	aug: "+",
 	aug7: "+<sup>7</sup>",
+	"maj7+": "+maj<sup>7</sup>",
 	dom9: "<sup>9</sup>",
 
 	minor: "mi",
