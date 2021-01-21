@@ -3,7 +3,7 @@ import { find } from "./finder.js";
 import { midiToTone } from "./midi.js";
 import Keyboard from "./keyboard.js";
 const naming = document.querySelector("#naming");
-function str(chord) { return toString(chord, naming.value); }
+function str(chord) { return `<span class="chord-name">${toString(chord, naming.value)}</span>`; }
 let k = new Keyboard(naming.value);
 document.body.appendChild(k.node);
 function update() {
@@ -18,7 +18,7 @@ function update() {
         node.textContent = "No chords detected :-(";
     }
     else {
-        node.innerHTML = `Playing ${chords.map(str).join(" / ")}`;
+        node.innerHTML = `Detected chord(s):${chords.map(str).join("")}`;
     }
 }
 document.querySelector("#piano").appendChild(k.node);

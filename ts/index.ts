@@ -4,7 +4,7 @@ import { midiToTone } from "./midi.js";
 import Keyboard from "./keyboard.js";
 
 const naming = document.querySelector("#naming") as HTMLSelectElement;
-function str(chord: Chord) { return toString(chord, naming.value); }
+function str(chord: Chord) { return `<span class="chord-name">${toString(chord, naming.value)}</span>`; }
 
 let k = new Keyboard(naming.value);
 document.body.appendChild(k.node);
@@ -23,7 +23,7 @@ function update() {
 	if (chords.length == 0) {
 		node.textContent = "No chords detected :-(";
 	} else {
-		node.innerHTML = `Playing ${chords.map(str).join(" / ")}`;
+		node.innerHTML = `Detected chord(s):${chords.map(str).join("")}`;
 	}
 }
 

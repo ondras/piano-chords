@@ -16,3 +16,7 @@ footer {
   text-align: center;
   border-top: 1px solid #888;
 }
+
+.chord-name {
+  margin-left: 1em;
+}
